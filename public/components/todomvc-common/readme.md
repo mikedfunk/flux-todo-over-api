@@ -1,15 +1,8 @@
 # todomvc-common
 
-> Common TodoMVC utilities used by our apps
-
-
-## Install
-
-```
-$ npm install --save todomvc-common
-```
+> Bower component for some common utilities we use in every app
 
 
 ## License
 
-MIT © [TasteJS](http://tastejs.com)
+MIT
