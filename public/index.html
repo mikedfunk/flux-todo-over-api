@@ -21,7 +21,6 @@
       var TodoApp = React.createClass({
         getInitialState: function () {
           return {todos: [
-            {'title': 'whatever'}
           ]};
         },
         render: function () {
@@ -41,6 +40,11 @@
               <TodoFooter todos={this.state.todos} />
             </div>
           );
+        },
+        componentDidMount: function () {
+          $.getJSON('assets/data/data.json', function (data) {
+            this.setState(data);
+          }.bind(this));
         }
       });
 
