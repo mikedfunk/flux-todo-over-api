@@ -20,7 +20,9 @@
     <script type="text/jsx">
       var TodoApp = React.createClass({
         getInitialState: function () {
-          return {};
+          return {todos: [
+            {'title': 'whatever'}
+          ]};
         },
         render: function () {
           return(
@@ -63,16 +65,31 @@
 
       var TodoList = React.createClass({
         render: function () {
+
+          var todoNodes = this.props.todos.map(function (todo) {
+            return(
+              <TodoItem title={todo.title} />
+            );
+          });
+
           return(
             <ul id="todo-list">
-              <li>
-                <div>
-                  <input className="toggle" type="checkbox" />
-                  <label>sdfsdfsf</label>
-                  <button className="destroy"></button>
-                </div>
-              </li>
+              {todoNodes}
             </ul>
+          );
+        }
+      });
+
+      var TodoItem = React.createClass({
+        render: function () {
+          return(
+            <li>
+              <div>
+                <input className="toggle" type="checkbox" />
+                <label>{this.props.title}</label>
+                <button className="destroy"></button>
+              </div>
+            </li>
           );
         }
       });
