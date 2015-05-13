@@ -8,11 +8,11 @@
 
   var paths = {
     "app": "src/app.js",
-    "react": "src/react/*.react.js",
+    "jsx": "src/*.jsx",
     "dest": "public/build/"
   };
 
-  gulp.task('app', function () {
+  var appTask = function () {
     var watcher = watchify(browserify({
       "entries": paths.app, "transform": [reactify], "debug": true
     }));
@@ -21,8 +21,14 @@
       watcher.bundle().pipe(source(paths.app)).pipe(gulp.dest(paths.dest));
     })
     .bundle().pipe(source(paths.app)).pipe(gulp.dest(paths.dest));
+  };
+
+  gulp.task('jsx', function () {
+    gulp.watch(paths.jsx, ['app']);
   });
 
-  gulp.task('watch', ['app']);
+  gulp.task('app', appTask);
+
+  gulp.task('watch', ['app', 'jsx']);
   gulp.task('default', ['watch']);
 }());
