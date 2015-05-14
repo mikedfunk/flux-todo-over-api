@@ -1,5 +1,7 @@
 (function() {
   'use strict';
+
+  // setup dependencies
   var gulp = require('gulp');
   var reactify = require('reactify');
   var browserify = require('browserify');
@@ -7,8 +9,10 @@
   var browsersync = require('browser-sync').create();
   var reload = browsersync.reload;
 
+  // setup paths for input/output of files
   var paths = {
     "app": "src/app.js",
+    "appOutput": "app.min.js",
     "jsx": "src/*.jsx",
     "dest": "public/build/",
     "html": "public/*.html"
@@ -39,7 +43,7 @@
       "entries": paths.app, "transform": [reactify], "debug": true
     })
     .bundle()
-    .pipe(source(paths.app))
+    .pipe(source(paths.appOutput))
     .pipe(gulp.dest(paths.dest))
     .pipe(reload({stream: true}));
   };
