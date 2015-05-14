@@ -37,10 +37,6 @@
     });
   });
 
-  gulp.task('api', shell.task([
-    'node_modules/.bin/json-server --port=3100 public/assets/data/data.json'
-  ]));
-
   /**
    * recompiles the app
    */

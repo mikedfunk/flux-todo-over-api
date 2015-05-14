@@ -3,7 +3,7 @@ var React = require('react');
 var TodoApp = require('./TodoApp.jsx');
 
 React.render(
-  <TodoApp url="http://localhost:3100/todos" />,
+  <TodoApp url="http://jsonplaceholder.typicode.com/todos" />,
   document.getElementById('app')
 
 );
