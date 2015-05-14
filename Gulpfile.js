@@ -8,11 +8,13 @@
   var source = require('vinyl-source-stream');
   var browsersync = require('browser-sync').create();
   var reload = browsersync.reload;
+  var shell = require('gulp-shell');
+  var rename = require('gulp-rename');
 
   // setup paths for input/output of files
   var paths = {
-    "app": "src/app.js",
-    "appOutput": "app.min.js",
+    "app": "src/app.jsx",
+    "appFinal": "app.min.js",
     "jsx": "src/*.jsx",
     "dest": "public/build/",
     "html": "public/*.html"
@@ -35,6 +37,10 @@
     });
   });
 
+  gulp.task('api', shell.task([
+    'node_modules/.bin/json-server --port=3100 public/assets/data/data.json'
+  ]));
+
   /**
    * recompiles the app
    */
@@ -43,7 +49,8 @@
       "entries": paths.app, "transform": [reactify], "debug": true
     })
     .bundle()
-    .pipe(source(paths.appOutput))
+    .pipe(source(paths.app))
+    .pipe(rename(paths.appFinal))
     .pipe(gulp.dest(paths.dest))
     .pipe(reload({stream: true}));
   };
@@ -61,6 +68,8 @@
   gulp.task('appWatch', function () {
     gulp.watch(paths.app, appTask);
   });
+
+  gulp.task('app', appTask);
 
   gulp.task('watch', ['appWatch', 'jsxWatch', 'browsersyncSetup', 'htmlWatch']);
   gulp.task('default', ['watch']);

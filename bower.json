@@ -16,5 +16,8 @@
     "todomvc-common": "0.1.9",
     "react": "~0.13.3",
     "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.4"
   }
 }
