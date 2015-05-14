@@ -3,32 +3,61 @@
   var gulp = require('gulp');
   var reactify = require('reactify');
   var browserify = require('browserify');
-  var watchify = require('watchify');
   var source = require('vinyl-source-stream');
+  var browsersync = require('browser-sync').create();
+  var reload = browsersync.reload;
 
   var paths = {
     "app": "src/app.js",
     "jsx": "src/*.jsx",
-    "dest": "public/build/"
+    "dest": "public/build/",
+    "html": "public/*.html"
   };
 
-  var appTask = function () {
-    var watcher = watchify(browserify({
-      "entries": paths.app, "transform": [reactify], "debug": true
-    }));
-
-    return watcher.on('update', function () {
-      watcher.bundle().pipe(source(paths.app)).pipe(gulp.dest(paths.dest));
-    })
-    .bundle().pipe(source(paths.app)).pipe(gulp.dest(paths.dest));
-  };
-
-  gulp.task('jsx', function () {
-    gulp.watch(paths.jsx, ['app']);
+  gulp.task('browsersyncSetup', function () {
+    browsersync.init({
+      server: {
+        baseDir: "./public/"
+      }
+    });
   });
 
-  gulp.task('app', appTask);
+  /**
+   * reload the page when the html changes
+   */
+  gulp.task('htmlWatch', function () {
+    gulp.watch(paths.html, function () {
+      reload();
+    });
+  });
 
-  gulp.task('watch', ['app', 'jsx']);
+  /**
+   * recompiles the app
+   */
+  var appTask = function () {
+    return browserify({
+      "entries": paths.app, "transform": [reactify], "debug": true
+    })
+    .bundle()
+    .pipe(source(paths.app))
+    .pipe(gulp.dest(paths.dest))
+    .pipe(reload({stream: true}));
+  };
+
+  /**
+   * recompile the app when jsx changes
+   */
+  gulp.task('jsxWatch', function () {
+    gulp.watch(paths.jsx, appTask);
+  });
+
+  /**
+   * recompile the app when the app file changes
+   */
+  gulp.task('appWatch', function () {
+    gulp.watch(paths.app, appTask);
+  });
+
+  gulp.task('watch', ['appWatch', 'jsxWatch', 'browsersyncSetup', 'htmlWatch']);
   gulp.task('default', ['watch']);
 }());
