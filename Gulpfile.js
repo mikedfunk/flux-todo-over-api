@@ -6,9 +6,6 @@
   var reactify = require('reactify');
   var browserify = require('browserify');
   var source = require('vinyl-source-stream');
-  var browsersync = require('browser-sync').create();
-  var reload = browsersync.reload;
-  var shell = require('gulp-shell');
   var rename = require('gulp-rename');
 
   // setup paths for input/output of files
@@ -20,23 +17,6 @@
     "html": "public/*.html"
   };
 
-  gulp.task('browsersyncSetup', function () {
-    browsersync.init({
-      server: {
-        baseDir: "./public/"
-      }
-    });
-  });
-
-  /**
-   * reload the page when the html changes
-   */
-  gulp.task('htmlWatch', function () {
-    gulp.watch(paths.html, function () {
-      reload();
-    });
-  });
-
   /**
    * recompiles the app
    */
@@ -47,8 +27,7 @@
     .bundle()
     .pipe(source(paths.app))
     .pipe(rename(paths.appFinal))
-    .pipe(gulp.dest(paths.dest))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(paths.dest));
   };
 
   /**
@@ -65,8 +44,6 @@
     gulp.watch(paths.app, appTask);
   });
 
-  gulp.task('app', appTask);
-
-  gulp.task('watch', ['appWatch', 'jsxWatch', 'browsersyncSetup', 'htmlWatch']);
+  gulp.task('watch', ['appWatch', 'jsxWatch', 'htmlWatch']);
   gulp.task('default', ['watch']);
 }());
