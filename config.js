@@ -20,6 +20,7 @@ System.config({
     "core-js": "npm:core-js@0.9.9",
     "jquery": "github:components/jquery@2.1.4",
     "jsx": "github:floatdrop/plugin-jsx@1.1.0",
+    "lodash": "npm:lodash@3.8.0",
     "react": "npm:react@0.14.0-alpha1",
     "reflux": "npm:reflux@0.2.7",
     "github:floatdrop/plugin-jsx@1.1.0": {
@@ -280,6 +281,9 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "source-map": "npm:source-map@0.1.31"
+    },
+    "npm:lodash@3.8.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:miller-rabin@1.1.5": {
       "bn.js": "npm:bn.js@1.3.0",

@@ -1,0 +1,13 @@
+{
+  "todos": [
+    {
+      "id": 100438489429,
+      "title": "a todo"
+    },
+    {
+      "id": 200438489429,
+      "title": "another todo"
+    }
+  ],
+  "browser-sync": []
+}
