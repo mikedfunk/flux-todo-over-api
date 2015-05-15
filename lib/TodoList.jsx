@@ -1,17 +1,20 @@
-var React = require('react');
-var Todo = require('./Todo.jsx!');
+(function () {
+  'use strict';
+  var React = require('react');
+  var Todo = require('./Todo.jsx!');
 
-var TodoList = React.createClass({
-  render: function () {
-    var todos = this.props.todos.map(function (todo) {
+  var TodoList = React.createClass({
+    render: function () {
+      var todos = this.props.todos.map(function (todo) {
+        return(
+          <Todo todo={todo} key={todo.id} />
+        )
+      });
       return(
-        <Todo todo={todo} key={todo.id} />
-      )
-    });
-    return(
-      <ul>{todos}</ul>
-    );
-  }
-});
+        <ul>{todos}</ul>
+      );
+    }
+  });
 
-module.exports = TodoList;
+  module.exports = TodoList;
+}());
