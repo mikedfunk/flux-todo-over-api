@@ -9,12 +9,12 @@ var $ = require('jquery');
 
 var TodoApp = React.createClass({
   // the glue to listen to triggers of an updated todolist json object
-  // this will cause setState({list:updatedlist}) whenever the store does trigger(updatedlist)
+  // this will cause setState({list:updatedlist}) locally
+  // whenever the store does trigger(updatedlist)
   // @link https://github.com/spoike/refluxjs#using-refluxconnect
   mixins: [Reflux.connect(TodoStore, "todos")],
   componentDidMount: function () {
     $.get(this.props.url, function (data) {
-      console.log("get data", data);
       TodoActions.load(data);
     });
   },
@@ -23,7 +23,7 @@ var TodoApp = React.createClass({
       <div>
         <h1>Todos</h1>
         <TodoList todos={this.state.todos} />
-        <TodoFooter />
+        <TodoFooter todos={this.state.todos} />
       </div>
     );
   }

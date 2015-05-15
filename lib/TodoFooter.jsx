@@ -3,7 +3,7 @@ var React = require('react');
 var TodoFooter = React.createClass({
   render: function () {
     return(
-      <footer>by Mike Funk</footer>
+      <footer>{this.props.todos.length} todos left</footer>
     );
   }
 });
