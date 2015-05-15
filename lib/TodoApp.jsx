@@ -6,6 +6,7 @@
   var TodoList = require('./TodoList.jsx!');
   var TodoFooter = require('./TodoFooter.jsx!');
   var TodoStore = require('./TodoStore');
+  var TodoConstants = require('./TodoConstants');
   var Reflux = require('reflux');
   var $ = require('jquery');
 
@@ -16,7 +17,7 @@
     // @link https://github.com/spoike/refluxjs#using-refluxconnect
     mixins: [Reflux.connect(TodoStore, "todos")],
     componentDidMount: function () {
-      $.get(this.props.url, function (data) {
+      $.get(TodoConstants.LIST_URL, function (data) {
         TodoActions.load(data);
       });
     },
