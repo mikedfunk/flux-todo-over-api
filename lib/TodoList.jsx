@@ -1,9 +1,16 @@
 var React = require('react');
+var Todo = require('./Todo.jsx!');
 
 var TodoList = React.createClass({
   render: function () {
+    console.log("todolist render", this.props.todos);
+    var todos = this.props.todos.map(function (todo) {
+      return(
+        <Todo todo={todo} />
+      )
+    });
     return(
-      <div>Todo list</div>
+      <ul>{todos}</ul>
     );
   }
 });
