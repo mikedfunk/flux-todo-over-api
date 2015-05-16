@@ -3,7 +3,7 @@ var React = require('react');
 var TodoFooter = React.createClass({
   render: function () {
     return(
-      <footer>{this.props.todos.length} todos left</footer>
+<footer><hr />{this.props.todos.length} todos left. Click a title to edit.</footer>
     );
   }
 });

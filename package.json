@@ -15,6 +15,7 @@
     }
   },
   "devDependencies": {
+    "bower": "^1.4.1",
     "json-server": "^0.7.8"
   }
 }

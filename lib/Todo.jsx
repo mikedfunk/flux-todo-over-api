@@ -43,7 +43,7 @@
       return(
         <li>
           <form onSubmit={this.handleEditSubmit}>
-            <a href="#" onClick={this.handleDeleteClick}>[Delete]</a>
+            <a href="#" className="button alert tiny" onClick={this.handleDeleteClick}>Delete</a>{' '}
             <input type="text" name="title" className="todo-edit-input" style={{display: "none"}} defaultValue={this.props.todo.title} />
             <span className="todo-text" onClick={this.handleEditClick}>{this.props.todo.title}</span>
           </form>

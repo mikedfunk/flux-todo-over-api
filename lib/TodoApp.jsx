@@ -24,7 +24,7 @@
     },
     render: function () {
       return(
-        <div>
+        <div className="large-12 columns">
           <h1>Todos</h1>
           <TodoForm />
           <TodoList todos={this.state.todos} />

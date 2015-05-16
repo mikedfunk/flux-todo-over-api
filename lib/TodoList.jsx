@@ -16,7 +16,7 @@
         );
       });
       return(
-        <ul>{todos}</ul>
+        <ul className="no-bullet">{todos}</ul>
       );
     }
   });
