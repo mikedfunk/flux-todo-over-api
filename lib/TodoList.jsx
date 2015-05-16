@@ -13,7 +13,7 @@
       var todos = this.props.todos.map(function (todo) {
         return(
           <Todo todo={todo} key={todo.id} />
-        )
+        );
       });
       return(
         <ul>{todos}</ul>

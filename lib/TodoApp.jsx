@@ -3,6 +3,7 @@
   var React = require('react');
   var TodoActions = require('./TodoActions');
   // call TodoActions.whateverAction() in app below
+  var TodoForm = require('./TodoForm.jsx!');
   var TodoList = require('./TodoList.jsx!');
   var TodoFooter = require('./TodoFooter.jsx!');
   var TodoStore = require('./TodoStore');
@@ -25,6 +26,7 @@
       return(
         <div>
           <h1>Todos</h1>
+          <TodoForm />
           <TodoList todos={this.state.todos} />
           <TodoFooter todos={this.state.todos} />
         </div>
