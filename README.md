@@ -25,3 +25,7 @@ A todolist using [jspm](http://jspm.io), [react](https://facebook.github.io/reac
  3. [Add a listenables element in the Store](https://github.com/mikedfunk/flux-todo-over-api/blob/master/lib/TodoStore.js#L12-L15) to automatically link `whatever` action with `onWhatever` method in the Store. There are other ways to link actions which is why they are abstracted. You could link multiple actions, add logic, do whatever. But this is the simplest way that keeps it flexible.
 
 Questions? Comments? Hatemail? Hugs? [mikefunk.com](http://mikefunk.com)
+
+## Todo
+
+- [ ] Write front-end tests with cucumber.js
