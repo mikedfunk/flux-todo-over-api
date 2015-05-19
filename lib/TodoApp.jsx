@@ -18,9 +18,7 @@
     // @link https://github.com/spoike/refluxjs#using-refluxconnect
     mixins: [Reflux.connect(TodoStore, "todos")],
     componentDidMount: function () {
-      $.get(TodoConstants.LIST_URL, function (data) {
-        TodoActions.load(data);
-      });
+      TodoActions.getTodos();
     },
     render: function () {
       return(
